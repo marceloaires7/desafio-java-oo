@@ -1,41 +1,38 @@
 package br.com.alura.modelos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cartao {
     private double limiteCartao;
-    private double valorCompra;
+    private double saldo;
+    private List<Produto> compras;
 
     public Cartao(double limiteCartao) {
         this.limiteCartao = limiteCartao;
+        this.saldo = limiteCartao;
+        this.compras = new ArrayList<>();
     }
 
-    public Cartao(double limiteCartao, double valorCompra) {
-        this.limiteCartao = limiteCartao;
-        this.valorCompra = valorCompra;
+    public boolean lancaCompra(Produto compra) {
+        if (this.saldo > compra.getValorProduto()) {
+            this.saldo -= compra.getValorProduto();
+            this.compras.add(compra);
+            return true;
+        }
+        return false;
     }
 
     public double getLimiteCartao() {
         return limiteCartao;
     }
 
-    public double getValorCompra() {
-        return valorCompra;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setLimiteCartao(double limiteCartao) {
-        this.limiteCartao = limiteCartao;
-    }
-
-    public void setValorCompra(double valorCompra) {
-        this.valorCompra = valorCompra;
-    }
-
-    public String validacao(double limiteCartao, double valorCompra) {
-        if (this.limiteCartao >= this.valorCompra) {
-            this.limiteCartao -= this.valorCompra;
-            return "Compra realizada!";
-        } else {
-            return "Saldo insuficiente!";
-        }
+    public List<Produto> getCompras() {
+        return compras;
     }
 
 }

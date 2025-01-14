@@ -1,33 +1,29 @@
 package br.com.alura.modelos;
 
-public class Produto extends Cartao implements Comparable<Produto> {
+public class Produto implements Comparable<Produto> {
     private String nomeProduto;
+    private double valorProduto;
 
-    public Produto(double limiteCartao) {
-        super(limiteCartao);
-    }
-
-    public Produto(double limiteCartao, double valorCompra, String nomeProduto) {
-        super(limiteCartao, valorCompra);
+    public Produto(String nomeProduto, double valorProduto) {
         this.nomeProduto = nomeProduto;
+        this.valorProduto = valorProduto;
     }
 
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public double getValorProduto() {
+        return valorProduto;
     }
 
     @Override
     public String toString() {
-        return getNomeProduto() + " - R$ " + getValorCompra();
+        return "Produto: " + nomeProduto + " - R$ " + valorProduto;
     }
 
     @Override
     public int compareTo(Produto outroProduto) {
-        return Double.compare(this.getValorCompra(), outroProduto.getValorCompra());
+        return Double.valueOf(this.valorProduto).compareTo(Double.valueOf(outroProduto.valorProduto));
     }
-
 }
